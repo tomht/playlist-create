@@ -1,4 +1,5 @@
 import os
+import ConfigParser
 from mutagen.easyid3 import EasyID3
 
 
@@ -15,8 +16,9 @@ def has_supported_extension(file):
     extension = file.split('.')[-1]
     return extension in supported_extensions
 
-
-root_directory = "/Users/tom/Music"
+config = ConfigParser.ConfigParser()
+config.read("playlist-create.cfg")
+root_directory = config.get("Main", "root_directory")
 
 artist_directories = get_subdirectories(root_directory)
 
